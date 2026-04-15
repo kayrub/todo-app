@@ -1,5 +1,18 @@
 /* used for App css specifically */
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 
+.counter-row {
+    border: 2px solid maroon;
+}
+
+input {
+  box-sizing: border-box;
+}
+    
 .todo-item.completed {
     text-decoration: line-through;
     color: gray;
@@ -9,53 +22,55 @@
     display: flex;
     justify-content:center;
     align-items:center;
-    font-size:large;
-    font-style:italic;
-    font-weight:400;
+    font-size:100px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
     max-width: 1000px;
+    border: 2px solid aqua;
 }
 
 .app-container {
     max-width: 1000px;
+    border:2px solid red;
 }
 
 .input-row {
     display:flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    border:2px solid blue;
 }
 
 .todo-input {
-    flex: 1;
-    border-color: purple;
-    border-radius: 10px;
+    flex: 2;
+    border: 2px solid purple;
 }
 
 button {
-    padding: 10px;
-    border-radius: 10px;
     cursor: pointer;
     background: yellow ;
 }
 
 .add-btn {
     border-color: purple;
+    flex: 1;
+}
+
+.filter-selector {
+    flex: 1;
 }
 
 .todo-list {
-    border: 10px solid orange;
+    border: 2px solid orange;
 }
 
 .todo-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  border: 10px solid #eee;
-  border-radius: 6px;
-  margin-bottom: 8px;
+  border: 2px solid pink;
 }
 
 .todo-item {
+    border:2px solid green;
 }
 
 .checkbox {
@@ -63,5 +78,5 @@ button {
 }
 
 .del-btn {
-    border-color:aqua;
+    border: 2px solid lightgreen;
 }
