@@ -1,0 +1,67 @@
+/* used for App css specifically */
+
+.todo-item.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.app-header {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    font-size:large;
+    font-style:italic;
+    font-weight:400;
+    max-width: 1000px;
+}
+
+.app-container {
+    max-width: 1000px;
+}
+
+.input-row {
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.todo-input {
+    flex: 1;
+    border-color: purple;
+    border-radius: 10px;
+}
+
+button {
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: yellow ;
+}
+
+.add-btn {
+    border-color: purple;
+}
+
+.todo-list {
+    border: 10px solid orange;
+}
+
+.todo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 10px solid #eee;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.todo-item {
+}
+
+.checkbox {
+    transform: scale(2);
+}
+
+.del-btn {
+    border-color:aqua;
+}
