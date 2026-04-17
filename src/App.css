@@ -4,79 +4,114 @@ ul {
   margin: 0;
   list-style: none;
 }
-
-.counter-row {
-    border: 2px solid maroon;
-}
-
+ 
 input {
   box-sizing: border-box;
-}
-    
-.todo-item.completed {
-    text-decoration: line-through;
-    color: gray;
-}
-
-.app-header {
-    display: flex;
-    justify-content:center;
-    align-items:center;
-    font-size:100px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    max-width: 1000px;
-    border: 2px solid aqua;
-}
-
-.app-container {
-    max-width: 1000px;
-    border:2px solid red;
-}
-
-.input-row {
-    display:flex;
-    justify-content: space-between;
-    border:2px solid blue;
-}
-
-.todo-input {
-    flex: 2;
-    border: 2px solid purple;
 }
 
 button {
     cursor: pointer;
-    background: yellow ;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: black;
+    background: orange;
+}
+
+button.add-btn:hover {
+    opacity: .7;
+    background: green;
+}
+
+button.del-btn:hover {
+    opacity: .7;
+    background: red;
+}
+
+body {
+  background: #f2fdff;
+}
+
+/* Header */
+
+.app-header {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Container */
+
+.app-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20 px;
+    background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.app-container > * {
+    margin-bottom: 16px;
+}
+
+/* Input Row */
+
+.input-row {
+    display:flex;
+    gap: 10px;
+}
+
+.todo-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 .add-btn {
-    border-color: purple;
-    flex: 1;
+    flex: none;
 }
 
 .filter-selector {
-    flex: 1;
+    flex: none;
 }
 
+/* Counter Row */
+
+.counter-row {
+    font-size: 15px;
+    color: gray;
+    padding:10px;
+}
+
+/* Todo-List */
+
 .todo-list {
-    border: 2px solid orange;
 }
 
 .todo-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border: 2px solid pink;
-}
-
-.todo-item {
-    border:2px solid green;
+  gap: 10px;
+  padding: 10px;
 }
 
 .checkbox {
-    transform: scale(2);
+    width: 15px;
+    height: 15px;
+}
+
+.todo-item {
+    flex: 1;
+    text-align: center;
+}
+
+.todo-item.completed {
+    text-decoration: line-through;
+    color: gray;
 }
 
 .del-btn {
-    border: 2px solid lightgreen;
 }

@@ -34,7 +34,7 @@ function App() {
     if (storedToDosData) {
       setToDos(JSON.parse(storedToDosData));
       setNextId(JSON.parse(storedNextId));
-      console.log(todos)
+      console.log(todos) 
     }
     setIsLoaded(true);
   }, []);
@@ -75,6 +75,8 @@ function App() {
 
   const countToDos = todos.filter(todo => !todo.completed).length;
 
+  const countRemaining = (curr) => curr !== 1 ? 'items' : 'item';
+
   const filterViewToDos = todos.filter(todo => {
     if(filterToDos === 'completed') return todo.completed;
     if(filterToDos === 'active') return !todo.completed;
@@ -95,7 +97,6 @@ function App() {
       </header>
 
       <main className='app-container'>
-        <div className='counter-row'>{countToDos}</div>
         <div className='input-row'>
           <input
             className='todo-input'
@@ -109,7 +110,7 @@ function App() {
           <button 
             className='add-btn'
             onClick = {() => addToDo(todoText)}>
-            Update List
+            Add Todo
           </button>
           <select 
             className='filter-selector'
@@ -119,6 +120,8 @@ function App() {
             <option value='active'>Active</option>
           </select>
         </div>
+
+        <div className='counter-row'>{countToDos} {countRemaining(countToDos)} remaining</div>
 
         <ul className='todo-list'>
           {filterViewToDos.map(todo => (
@@ -139,7 +142,7 @@ function App() {
             <button 
               className='del-btn'
               onClick ={() => deleteToDo(todo)}>
-              delete
+              Delete
             </button>
           </li>
           ))}
