@@ -21,3 +21,16 @@ commit added checkbox and strikethrough functionality, added delete button. refa
 
 Day 4 (25min): Make it look not-terrible. Add some basic CSS — center the app, give it a max-width, style the input and buttons. Commit and push.
     Touch up code to be more standardized
+
+If you finish early, add: filtering (all/active/completed), a counter showing how many todos are left, or localStorage so todos survive a page refresh.
+
+todocounter, my initial idea of new counter state, capturing count on initial render, than updating it with toggleToDo may not be efficient. dont need to avoid multiple iterations because iterating is cheap.
+
+adding filtering was interesting, was so set on dropdown, manually coding it in css, when all i needed to do was use selector tag. I even researched css, but need to learn how to ask to be more efficient.
+
+week 2 
+
+day 1 (localStorage, use Effect, completed last week);
+
+day 2 
+Add a weather widget to the top of the page. Fetch from a free API like wttr.in (https://wttr.in/?format=j1). Display the temperature and condition. Commit and push.

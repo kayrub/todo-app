@@ -1,22 +1,13 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
+
 /*
-add a div above input-row
-count how many todos are left
-iterate over todos, check todos.completed ? counter==1 : do nothing
-afterwards everytime toggleToDo is run have it track the count
-
-add a div below input-row
-dropdown filter
-display all, completed, uncompleted.
-
-localstorage.
-store todos JSON.stringify
-access todos JSON.parse
-useEffect on initial render
-useEffect when todos state changes
-
+useEffect to fetch data from weather url.
+then make data usable.
+check how data looks like.
+access specifically the temp and condition.
+display it across the top of the page
 */
 
 function App() {
@@ -26,15 +17,44 @@ function App() {
   const [nextId, setNextId] = useState(3);
   const [filterToDos, setFilterToDos] = useState('all');
   const [isLoaded, setIsLoaded] = useState(false);
+  const [weather, setWeather] = useState({});
+  
+
+useEffect(() => {
+  const fetchWeather = async () => {
+    // console.log('accessed fetchWeather')
+    try {
+      const res = await fetch('https://wttr.in/?format=j1');
+      console.log("weather res: ", res);
+      const data = await res.json();
+      console.log("weather data: ", data);
+      setWeather({
+        condition: data.current_condition[0],
+        temperature: data.weather[0]
+      });
+    } catch (err) {
+      console.log("error beepp boop: ", err);
+    }
+  };
+
+  fetchWeather();
+  // console.log(weather);
+}, []);
+
+useEffect(() => {
+  if (weather) {
+    console.log("Updated weather:", weather);
+  }
+}, [weather]);
 
   useEffect(() => {
     const storedToDosData = localStorage.getItem('todos');
     const storedNextId = localStorage.getItem('nextId');
-    console.log('useEffect storedData: ',storedToDosData);
+    // console.log('useEffect storedData: ',storedToDosData);
     if (storedToDosData) {
       setToDos(JSON.parse(storedToDosData));
       setNextId(JSON.parse(storedNextId));
-      console.log(todos) 
+      // console.log(todos) 
     }
     setIsLoaded(true);
   }, []);
@@ -43,16 +63,16 @@ function App() {
     if (!isLoaded) return;
     localStorage.setItem('todos', JSON.stringify(todos));
     localStorage.setItem('nextId', JSON.stringify(nextId));
-    console.log('saving to local Storage')
-    console.log(localStorage);
+    // console.log('saving to local Storage')
+    // console.log(localStorage);
   }, [todos, isLoaded, nextId]);
 
   const addToDo = (newToDo) => {
     setToDos(prev => [...prev, {id: nextId, name: newToDo, completed:false}]);
     setNextId(prev => prev + 1);  
-    console.log("todo added:", newToDo);
-    console.log("todos: ", todos);
-    console.log("current nextid:", nextId);
+    // console.log("todo added:", newToDo);
+    // console.log("todos: ", todos);
+    // console.log("current nextid:", nextId);
     setToDoText('');
     
   }
@@ -97,6 +117,7 @@ function App() {
       </header>
 
       <main className='app-container'>
+        {weather && <div className='weather-row'>Temperature: {weather.condition.temp_F}F   Condition: {weather.condition.weatherDesc[0].value}</div>}
         <div className='input-row'>
           <input
             className='todo-input'

@@ -44,10 +44,10 @@ body {
 /* Container */
 
 .app-container {
-    max-width: 600px;
+    max-width: 450px;
     margin: 0 auto;
     padding: 20 px;
-    background: white;
+    background: #f2fdff;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
@@ -61,6 +61,7 @@ body {
 .input-row {
     display:flex;
     gap: 10px;
+    
 }
 
 .todo-input {
@@ -68,14 +69,22 @@ body {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    box-shadow: 0 4px 12px gray;
 }
 
 .add-btn {
     flex: none;
+    box-shadow: 0 4px 12px gray;
 }
 
 .filter-selector {
     flex: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    color: gray;
+    box-shadow: 0 4px 12px gray;
 }
 
 /* Counter Row */
@@ -83,12 +92,16 @@ body {
 .counter-row {
     font-size: 15px;
     color: gray;
+    background: white;
     padding:10px;
+    box-shadow: 0 4px 12px gray;
 }
 
 /* Todo-List */
 
 .todo-list {
+    box-shadow: 0 4px 12px gray;
+    background: white;
 }
 
 .todo-row {
@@ -99,13 +112,15 @@ body {
 }
 
 .checkbox {
-    width: 15px;
-    height: 15px;
+    width: 22px;
+    height: 22px;
+    box-shadow: 0 4px 12px gray;
 }
 
 .todo-item {
     flex: 1;
-    text-align: center;
+    text-align: left;
+    
 }
 
 .todo-item.completed {
@@ -114,4 +129,5 @@ body {
 }
 
 .del-btn {
+    box-shadow: 0 4px 12px gray;
 }
