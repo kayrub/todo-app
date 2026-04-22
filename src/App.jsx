@@ -17,7 +17,7 @@ function App() {
   const [nextId, setNextId] = useState(3);
   const [filterToDos, setFilterToDos] = useState('all');
   const [isLoaded, setIsLoaded] = useState(false);
-  const [weather, setWeather] = useState({});
+  const [weather, setWeather] = useState(false);
   
 
 useEffect(() => {
