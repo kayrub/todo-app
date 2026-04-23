@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import WeatherWidget from './WeatherWidget';
 
 
 /*
-useEffect to fetch data from weather url.
-then make data usable.
-check how data looks like.
-access specifically the temp and condition.
-display it across the top of the page
+pull weather widget in its own component
+pull todo list in its own component
 */
 
 function App() {
@@ -18,34 +16,30 @@ function App() {
   const [filterToDos, setFilterToDos] = useState('all');
   const [isLoaded, setIsLoaded] = useState(false);
   const [weather, setWeather] = useState(false);
+  const [isLoadingWeather, setIsLoadingWeather] = useState("loading");
+  const [weatherUrl, setWeatherUrl] = useState('https://wttr.in/?format=j1');
   
 
 useEffect(() => {
+  setTimeout(() => {
   const fetchWeather = async () => {
-    // console.log('accessed fetchWeather')
     try {
-      const res = await fetch('https://wttr.in/?format=j1');
-      console.log("weather res: ", res);
+      const res = await fetch(weatherUrl);
       const data = await res.json();
-      console.log("weather data: ", data);
+      // console.log("weather data: ", data);
       setWeather({
         condition: data.current_condition[0],
         temperature: data.weather[0]
       });
+      setIsLoadingWeather("loaded");
     } catch (err) {
       console.log("error beepp boop: ", err);
+      setIsLoadingWeather("failed");
     }
   };
-
   fetchWeather();
-  // console.log(weather);
-}, []);
-
-useEffect(() => {
-  if (weather) {
-    console.log("Updated weather:", weather);
-  }
-}, [weather]);
+  }, 2000)
+}, [weatherUrl]);
 
   useEffect(() => {
     const storedToDosData = localStorage.getItem('todos');
@@ -66,6 +60,12 @@ useEffect(() => {
     // console.log('saving to local Storage')
     // console.log(localStorage);
   }, [todos, isLoaded, nextId]);
+
+  const breakWeather = () => {
+    setWeatherUrl('https://beepboopsuckstosuck/');
+    setIsLoadingWeather('failed');
+    console.log(isLoadingWeather);
+  }
 
   const addToDo = (newToDo) => {
     setToDos(prev => [...prev, {id: nextId, name: newToDo, completed:false}]);
@@ -117,7 +117,10 @@ useEffect(() => {
       </header>
 
       <main className='app-container'>
-        {weather && <div className='weather-row'>Temperature: {weather.condition.temp_F}F   Condition: {weather.condition.weatherDesc[0].value}</div>}
+        <WeatherWidget loading={isLoadingWeather} url={weatherUrl} weather={weather}/>
+        {/* {isLoadingWeather === "failed" && <div> failed to connect to {weatherUrl} </div>}
+        {isLoadingWeather === "loading" && <div>Weather is Loading...setTimeOut to replicate</div>}
+        {isLoadingWeather === "loaded" && <div className='weather-row'>Temperature: {weather.condition.temp_F}F   Condition: {weather.condition.weatherDesc[0].value}</div>} */}
         <div className='input-row'>
           <input
             className='todo-input'
@@ -168,6 +171,7 @@ useEffect(() => {
           </li>
           ))}
         </ul>
+        <button onClick = {() => breakWeather()}>breakWeather</button>
       </main>
     </>
   )

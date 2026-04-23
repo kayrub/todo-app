@@ -34,3 +34,7 @@ day 1 (localStorage, use Effect, completed last week);
 
 day 2 
 Add a weather widget to the top of the page. Fetch from a free API like wttr.in (https://wttr.in/?format=j1). Display the temperature and condition. Commit and push.
+
+Day 3 (25 min): Handle the loading and error states for the weather fetch. What does the page show while the API is loading? What if the request fails? Commit and push
+
+Day 4–5 (25 min each): Refactor. Your App.jsx is probably getting long. Pull the weather widget into its own component. Pull the todo list into its own component. Pass data between them with props. Commit and push.
