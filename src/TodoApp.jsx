@@ -1,17 +1,4 @@
-//   todos = {todos}
-//           filter = {filterTodos}
-//           onprops.onAddTodo={props.onAddTodo}
-//           onToggleTodo={toggleTodo}
-//           onDeleteTodo={deleteTodo}
-//           onChangeFilter={setFilterTodos}
-
 const TodoApp = (props) => {
-
-const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      props.onAddTodo(e.target.value);
-    }
-  }
 
    const filterViewTodos = props.todos.filter(todo => {
     if(props.filter === 'completed') return todo.completed;
@@ -31,13 +18,13 @@ const handleKeyDown = (e) => {
             id = "text-input"
             type = "text"
             value = {props.todoText}
-            onChange = {(e) => props.setTodoText(e.target.value)}
+            onChange = {props.onAddTodoInput}
             placeholder = "Please type here..."
-            onKeyDown = {handleKeyDown}
+            onKeyDown = {props.onHandleKeyDown}
             />
           <button 
             className='add-btn'
-            onClick = {() => props.onAddTodo(todoText)}>
+            onClick = {() => props.onAddTodo(props.todoText)}>
             Add Todo
           </button>
           <select 

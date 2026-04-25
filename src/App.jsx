@@ -4,11 +4,6 @@ import WeatherWidget from './WeatherWidget';
 import TodoApp from './TodoApp';
 
 
-/*
-pull weather widget in its own component
-pull todo list in its own component
-*/
-
 function App() {
 
   const [todoText, setTodoText] = useState(""); 
@@ -49,6 +44,14 @@ function App() {
     
   }
 
+  const addTodoInput = (e) => setTodoText(e.target.value);
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+       addTodo(e.target.value);
+    }
+  }
+  
 
   const toggleTodo = (currTodo) => {
     setTodos(prev => 
@@ -59,10 +62,6 @@ function App() {
       )
     )
   }
-
-  // const countTodos = todos.filter(todo => !todo.completed).length;
-  // const countRemaining = (curr) => curr !== 1 ? 'items' : 'item';
-
 
   const deleteTodo = (currTodo) => {
     setTodos(prev => 
@@ -81,65 +80,15 @@ function App() {
         <TodoApp
           todoText = {todoText}
           todos = {todos}
-          setTodoText = {setTodoText}
+          // setTodoText = {setTodoText}
           filter = {filterTodos}
           onAddTodo={addTodo}
+          onAddTodoInput={addTodoInput}
+          onHandleKeyDown={handleKeyDown}
           onToggleTodo={toggleTodo}
           onDeleteTodo={deleteTodo}
           onChangeFilter={setFilterTodos}
-
         />
-        {/* <div className='input-row'>
-          <input
-            className='todo-input'
-            id = "text-input"
-            type = "text"
-            value = {todoText}
-            onChange = {(e) => setTodoText(e.target.value)}
-            placeholder = "Please type here..."
-            onKeyDown = {handleKeyDown}
-            />
-          <button 
-            className='add-btn'
-            onClick = {() => addTodo(todoText)}>
-            Add Todo
-          </button>
-          <select 
-            className='filter-selector'
-            onChange = {(e) => setFilterTodos(e.target.value)}>
-            <option value='all'>All</option>
-            <option value='completed'>Completed</option>
-            <option value='active'>Active</option>
-          </select>
-        </div>
-
-        <div className='counter-row'>{countTodos} {countRemaining(countTodos)} remaining</div>
-
-        <ul className='todo-list'>
-          {filterViewTodos.map(todo => (
-          <li
-            className='todo-row'
-            key={todo.id}>
-            <input 
-              className='checkbox'
-              type="checkbox"
-              checked = {todo.completed}
-              onChange = {() => toggleTodo(todo)}
-            />
-
-            <span className = {`todo-item ${todo.completed ? 'completed' : ''}`}>
-              {todo.name}
-            </span>
-
-            <button 
-              className='del-btn'
-              onClick ={() => deleteTodo(todo)}>
-              Delete
-            </button>
-          </li>
-          ))}
-        </ul> */}
-        {/* <button onClick = {() => breakWeather()}>breakWeather</button> */}
       </main>
     </>
   )
